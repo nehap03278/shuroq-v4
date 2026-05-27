@@ -985,7 +985,7 @@ function WhyUs(){
           {WHY_POINTS.map((_p,i)=>(
             <div key={i} style={{ opacity:visible?1:0, transform:visible?"none":"translateY(16px)", transition:`all .6s ease ${i*80}ms`, background:"#F8FAFD", border:"1.5px solid #E8F0FB", borderRadius:14, padding:"22px 24px" }}>
               <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:12 }}>
-                <span style={{ fontSize:22 }}>{p.icon}</span>
+                <span style={{ fontSize:22 }}>{_p.icon}</span>
                 <span style={{ fontFamily:"'Nunito',sans-serif", fontWeight:800, color:"#1B2D4F", fontSize:15 }}>{tx(lang,"whyUs",`p${i}t`)}</span>
                 <span style={{ marginLeft:"auto", fontFamily:"'Nunito',sans-serif", color:"#3B82C4", fontWeight:900, fontSize:14 }}>{_p.pct}%</span>
               </div>
