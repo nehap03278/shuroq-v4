@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 
 // ─── Brand palette ────────────────────────────────────────────────────────────
 // BG #F4F7FC | Card #FFFFFF | Navy #1B2D4F | Sky #3B82C4
@@ -477,21 +477,9 @@ function t(lang, section, key) {
   return T[lang]?.[section]?.[key] ?? T.en[section]?.[key] ?? key;
 }
 
-// Global language context — all mounted components share one Set of setters
-const _langSetters = new Set();
-let _globalLang = "en";
-function useLang() {
-  const [lang, setLang] = useState(_globalLang);
-  useEffect(() => {
-    _langSetters.add(setLang);
-    return () => _langSetters.delete(setLang);
-  }, []);
-  const changeLang = useCallback((l) => {
-    _globalLang = l;
-    _langSetters.forEach(s => s(l));
-  }, []);
-  return [lang, changeLang];
-}
+// Language context — React Context guarantees all consumers re-render on change
+const LangContext = createContext(["en", () => {}]);
+function useLang() { return useContext(LangContext); }
 
 // ── Language Switcher Component ───────────────────────────────────────────────
 function LangSwitcher({ compact = false }) {
@@ -1266,6 +1254,12 @@ function SupportAssistant(){
   );
 }
 
+// ── LangProvider ──────────────────────────────────────────────────────────────
+function LangProvider({ children }) {
+  const [lang, setLang] = useState("en");
+  return <LangContext.Provider value={[lang, setLang]}>{children}</LangContext.Provider>;
+}
+
 // ── App ───────────────────────────────────────────────────────────────────────
 export default function App(){
   const [active,setActive]=useState("home");
@@ -1276,6 +1270,7 @@ export default function App(){
     return()=>obs.disconnect();
   },[]);
   return (
+    <LangProvider>
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Nunito:wght@400;600;700;800;900&display=swap');
@@ -1316,5 +1311,6 @@ export default function App(){
       <FloatingActions/>
       <SupportAssistant/>
     </>
+    </LangProvider>
   );
 }
