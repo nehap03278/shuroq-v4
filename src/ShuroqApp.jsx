@@ -609,6 +609,7 @@ function Navbar({ active }) {
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
+  const [lang] = useLang();
   const words = ["AI-Powered","Intelligent","Future-Ready","Scalable"];
   const [wi, setWi] = useState(0);
   const [fade, setFade] = useState(true);
@@ -632,33 +633,33 @@ function Hero() {
       <div style={{ position:"relative", zIndex:1, textAlign:"center", padding:"120px 5vw 60px", maxWidth:900 }}>
         <div style={{ display:"inline-flex", alignItems:"center", gap:8, background:"rgba(59,130,196,0.08)", border:"1px solid rgba(59,130,196,0.22)", borderRadius:40, padding:"7px 20px", marginBottom:24 }}>
           <span style={{ width:7, height:7, borderRadius:"50%", background:"#0EA5C9", display:"inline-block", animation:"pulse 2s infinite" }}/>
-          <span style={{ fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:11.5, color:"#3B82C4", letterSpacing:2.2 }}>AI-FIRST ENGINEERING COMPANY</span>
+          <span style={{ fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:11.5, color:"#3B82C4", letterSpacing:2.2 }}>{t(lang,"hero","badge")}</span>
         </div>
         <h1 style={{ fontFamily:"'Playfair Display',Georgia,serif", fontSize:"clamp(2.2rem,5.5vw,4.4rem)", fontWeight:900, color:"#1B2D4F", lineHeight:1.12, marginBottom:10 }}>
-          Engineering{" "}
+          {t(lang,"hero","h1a")}{" "}
           <span style={{ background:"linear-gradient(135deg,#F5A623 0%,#3B82C4 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", opacity:fade?1:0, transition:"opacity .35s ease", display:"inline-block" }}>{words[wi]}</span>
-          <br/>Digital Experiences
+          <br/>{t(lang,"hero","h1b")}
         </h1>
         <p style={{ fontFamily:"'Nunito',sans-serif", fontSize:"clamp(.95rem,1.7vw,1.12rem)", fontWeight:600, color:"#6B84A3", lineHeight:1.85, maxWidth:580, margin:"20px auto 38px" }}>
-          AI Applications · Mobile Apps · DevOps · Web Solutions · Automation<br/>
-          We engineer intelligent software that scales with your ambition.
+          {t(lang,"hero","sub").split('\n')[0]}<br/>
+          {t(lang,"hero","sub").split('\n')[1]}
         </p>
         <div style={{ display:"flex", gap:14, justifyContent:"center", flexWrap:"wrap" }}>
           <button onClick={() => document.getElementById("contact")?.scrollIntoView({behavior:"smooth"})}
             style={{ background:"linear-gradient(135deg,#3B82C4,#0EA5C9)", border:"none", borderRadius:11, color:"#fff", fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:15, padding:"14px 38px", cursor:"pointer", boxShadow:"0 6px 24px rgba(59,130,196,0.34)", transition:"transform .2s,box-shadow .2s" }}
             onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 10px 30px rgba(59,130,196,0.45)";}}
             onMouseLeave={e=>{e.currentTarget.style.transform="none";e.currentTarget.style.boxShadow="0 6px 24px rgba(59,130,196,0.34)";}}>
-            Get Started →
+            {t(lang,"hero","cta1")}
           </button>
           <button onClick={() => document.getElementById("services")?.scrollIntoView({behavior:"smooth"})}
             style={{ background:"#fff", border:"1.5px solid #D6E4F7", borderRadius:11, color:"#1B2D4F", fontFamily:"'Nunito',sans-serif", fontWeight:800, fontSize:15, padding:"14px 38px", cursor:"pointer", boxShadow:"0 2px 12px rgba(59,130,196,0.09)", transition:"all .25s" }}
             onMouseEnter={e=>{e.currentTarget.style.borderColor="#3B82C4";e.currentTarget.style.color="#3B82C4";}}
             onMouseLeave={e=>{e.currentTarget.style.borderColor="#D6E4F7";e.currentTarget.style.color="#1B2D4F";}}>
-            Explore Services
+            {t(lang,"hero","cta2")}
           </button>
         </div>
         <div style={{ display:"flex", gap:14, justifyContent:"center", marginTop:50, flexWrap:"wrap" }}>
-          {[["50+","Projects Delivered"],["98%","AI Accuracy"],["24/7","Support"],["4.9★","Client Rating"]].map(([v,l]) => (
+          {[["50+",t(lang,"hero","stat1")],["98%",t(lang,"hero","stat2")],["24/7",t(lang,"hero","stat3")],["4.9★",t(lang,"hero","stat4")]].map(([v,l]) => (
             <div key={l} style={{ background:"#fff", border:"1px solid #D6E4F7", borderRadius:14, padding:"14px 20px", boxShadow:"0 2px 14px rgba(59,130,196,0.08)" }}>
               <div style={{ fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:900, color:"#3B82C4" }}>{v}</div>
               <div style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, fontWeight:700, color:"#6B84A3", letterSpacing:1.1, marginTop:3 }}>{l.toUpperCase()}</div>
@@ -741,6 +742,7 @@ function Slideshow() {
 
 // ── About ─────────────────────────────────────────────────────────────────────
 function About() {
+  const [lang] = useLang();
   const [ref, visible] = useIntersection();
   const capabilities = [
     {icon:"🤖",label:"AI Engineering",color:"#3B82C4"},{icon:"☁️",label:"Cloud Infra",color:"#0EA5C9"},
@@ -753,15 +755,15 @@ function About() {
       <div ref={ref} style={{ maxWidth:1100, margin:"0 auto" }}>
         <div className="ag" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:64, alignItems:"center" }}>
           <div style={{ opacity:visible?1:0, transform:visible?"none":"translateX(-28px)", transition:"all .8s ease" }}>
-            <SectionLabel text="ABOUT US"/>
+            <SectionLabel text={t(lang,"about","label")}/>
             <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:900, color:"#1B2D4F", lineHeight:1.2, marginBottom:20, textAlign:"left" }}>
-              Where Technology<br/>Meets <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Vision</span>
+              {t(lang,"about","h2a")}<br/><span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"about","h2b")}</span>
             </h2>
             <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:15.5, lineHeight:1.85, fontWeight:600, marginBottom:16 }}>
-              Shuroq — meaning "Sunrise" in Arabic — embodies our belief that every great product begins with a bold new dawn. We are an AI-first engineering company building the digital infrastructure of tomorrow.
+              {t(lang,"about","p1")}
             </p>
             <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:15.5, lineHeight:1.85, fontWeight:600, marginBottom:28 }}>
-              From stealth startups to enterprise clients, we engineer software that scales, performs, and inspires — obsessing over every detail.
+              {t(lang,"about","p2")}
             </p>
             <div style={{ display:"flex", gap:10, flexWrap:"wrap" }}>
               {["Innovation-First","AI-Native","Startup-Friendly","Enterprise-Grade"].map(t => (
@@ -782,7 +784,7 @@ function About() {
           </div>
         </div>
         <div style={{ marginTop:56, paddingTop:44, borderTop:"1.5px solid #E8F0FB" }}>
-          <h3 style={{ fontFamily:"'Nunito',sans-serif", fontWeight:900, color:"#1B2D4F", fontSize:15, letterSpacing:1.5, textAlign:"center", marginBottom:28, textTransform:"uppercase" }}>Core Capabilities</h3>
+          <h3 style={{ fontFamily:"'Nunito',sans-serif", fontWeight:900, color:"#1B2D4F", fontSize:15, letterSpacing:1.5, textAlign:"center", marginBottom:28, textTransform:"uppercase" }}>{t(lang,"about","caps")}</h3>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(120px,1fr))", gap:14 }}>
             {capabilities.map((v, i) => {
               const [hov, setHov] = useState(false);
@@ -814,20 +816,21 @@ function About() {
 
 // ── Services ──────────────────────────────────────────────────────────────────
 function Services() {
+  const [lang] = useLang();
   const [ref, visible] = useIntersection();
   const [modalSvc, setModalSvc] = useState(null);
   return (
     <section id="services" style={{ background:"#F4F7FC", padding:"100px 5vw" }}>
       <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <div style={{ textAlign:"center", marginBottom:56 }}>
-          <SectionLabel text="WHAT WE BUILD"/>
+          <SectionLabel text={t(lang,"services","label")}/>
           <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:900, color:"#1B2D4F" }}>
-            Our <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Services</span>
+            {t(lang,"services","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"services","h2b")}</span>
           </h2>
-          <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:15, fontWeight:600, maxWidth:500, margin:"14px auto 0" }}>End-to-end digital solutions — from AI platforms to mobile apps and cloud infrastructure.</p>
+          <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:15, fontWeight:600, maxWidth:500, margin:"14px auto 0" }}>{t(lang,"services","sub")}</p>
         </div>
         <div ref={ref} style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(280px,1fr))", gap:18 }}>
-          {SERVICES.map((s,i) => <ServiceCard key={s.title} svc={s} delay={i*48} visible={visible} onLearnMore={()=>setModalSvc(s)}/>)}
+          {SERVICES.map((s,i) => <ServiceCard key={s.title} svc={s} delay={i*48} visible={visible} onLearnMore={()=>setModalSvc(s)} lang={lang}/>)}
         </div>
       </div>
       {modalSvc && <ServiceModal svc={modalSvc} onClose={()=>setModalSvc(null)}/>}
@@ -835,7 +838,7 @@ function Services() {
   );
 }
 
-function ServiceCard({svc,delay,visible,onLearnMore}){
+function ServiceCard({svc,delay,visible,onLearnMore,lang}){
   const [h,setH]=useState(false);
   return (
     <div onMouseEnter={()=>setH(true)} onMouseLeave={()=>setH(false)}
@@ -845,7 +848,7 @@ function ServiceCard({svc,delay,visible,onLearnMore}){
       <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:13.5, lineHeight:1.72, fontWeight:600, marginBottom:16 }}>{svc.desc}</p>
       <button onClick={onLearnMore}
         style={{ background:h?"linear-gradient(135deg,#3B82C4,#0EA5C9)":"none", border:h?"none":"none", color:h?"#fff":"#6B84A3", fontFamily:"'Nunito',sans-serif", fontWeight:800, fontSize:13, cursor:"pointer", padding:h?"8px 18px":"0", borderRadius:8, display:"flex", alignItems:"center", gap:5, transition:"all .25s" }}>
-        Learn more <span style={{ display:"inline-block", transition:"transform .2s", transform:h?"translateX(3px)":"none" }}>→</span>
+        {t(lang,"services","learnMore")} <span style={{ display:"inline-block", transition:"transform .2s", transform:h?"translateX(3px)":"none" }}>→</span>
       </button>
     </div>
   );
@@ -853,14 +856,15 @@ function ServiceCard({svc,delay,visible,onLearnMore}){
 
 // ── Why Choose Us ─────────────────────────────────────────────────────────────
 function WhyUs(){
+  const [lang] = useLang();
   const [ref,visible]=useIntersection();
   return (
     <section style={{ background:"#fff", padding:"100px 5vw" }}>
       <div style={{ maxWidth:1100, margin:"0 auto" }}>
         <div style={{ textAlign:"center", marginBottom:52 }}>
-          <SectionLabel text="WHY SHUROQ"/>
+          <SectionLabel text={t(lang,"whyUs","label")}/>
           <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:900, color:"#1B2D4F" }}>
-            Why Choose <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Us</span>
+            {t(lang,"whyUs","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"whyUs","h2b")}</span>
           </h2>
         </div>
         <div ref={ref} className="wg" style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:22 }}>
@@ -885,12 +889,13 @@ function WhyUs(){
 
 // ── Technologies ──────────────────────────────────────────────────────────────
 function Technologies(){
+  const [lang] = useLang();
   return (
     <section id="technologies" style={{ background:"#F4F7FC", padding:"80px 0", overflow:"hidden" }}>
       <div style={{ textAlign:"center", marginBottom:44, padding:"0 5vw" }}>
-        <SectionLabel text="OUR STACK"/>
+        <SectionLabel text={t(lang,"tech","label")}/>
         <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.6rem)", fontWeight:900, color:"#1B2D4F" }}>
-          Technologies We <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Master</span>
+          {t(lang,"tech","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"tech","h2b")}</span>
         </h2>
       </div>
       <div style={{ display:"flex", overflow:"hidden" }}>
@@ -911,14 +916,15 @@ function Technologies(){
 
 // ── Portfolio ─────────────────────────────────────────────────────────────────
 function Portfolio(){
+  const [lang] = useLang();
   const [ref,visible]=useIntersection();
   return (
     <section id="portfolio" style={{ background:"#fff", padding:"100px 5vw" }}>
       <div style={{ maxWidth:1200, margin:"0 auto" }}>
         <div style={{ textAlign:"center", marginBottom:56 }}>
-          <SectionLabel text="OUR WORK"/>
+          <SectionLabel text={t(lang,"portfolio","label")}/>
           <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:900, color:"#1B2D4F" }}>
-            Featured <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Projects</span>
+            {t(lang,"portfolio","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"portfolio","h2b")}</span>
           </h2>
         </div>
         <div ref={ref} style={{ display:"grid", gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))", gap:20 }}>
@@ -947,24 +953,25 @@ function ProjectCard({proj,delay,visible}){
 
 // ── Testimonials ──────────────────────────────────────────────────────────────
 function Testimonials(){
+  const [lang] = useLang();
   const [idx,setIdx]=useState(0);
   useEffect(()=>{const id=setInterval(()=>setIdx(i=>(i+1)%TESTIMONIALS.length),4500);return()=>clearInterval(id);},[]);
-  const t=TESTIMONIALS[idx];
+  const testimonial=TESTIMONIALS[idx];
   return (
     <section style={{ background:"#F4F7FC", padding:"100px 5vw" }}>
       <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
-        <SectionLabel text="TESTIMONIALS"/>
+        <SectionLabel text={t(lang,"testimonials","label")}/>
         <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.6rem)", fontWeight:900, color:"#1B2D4F", marginBottom:44 }}>
-          What Our <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Clients</span> Say
+          {t(lang,"testimonials","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"testimonials","h2b")}</span>
         </h2>
         <div style={{ background:"#fff", border:"1.5px solid #D6E4F7", borderRadius:20, padding:"36px 44px", boxShadow:"0 4px 24px rgba(59,130,196,0.09)", minHeight:210 }}>
           <div style={{ fontSize:44, color:"#3B82C4", lineHeight:1, marginBottom:14, fontFamily:"Georgia,serif", opacity:.3 }}>"</div>
-          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:"1.08rem", color:"#1B2D4F", lineHeight:1.9, fontStyle:"italic", marginBottom:24 }}>{t.text}</p>
+          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:"1.08rem", color:"#1B2D4F", lineHeight:1.9, fontStyle:"italic", marginBottom:24 }}>{testimonial.text}</p>
           <div style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:12 }}>
-            <div style={{ width:42, height:42, borderRadius:"50%", background:"linear-gradient(135deg,#F5A623,#3B82C4)", display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:14, color:"#fff" }}>{t.initials}</div>
+            <div style={{ width:42, height:42, borderRadius:"50%", background:"linear-gradient(135deg,#F5A623,#3B82C4)", display:"flex", alignItems:"center", justifyContent:"center", fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:14, color:"#fff" }}>{testimonial.initials}</div>
             <div style={{ textAlign:"left" }}>
-              <div style={{ fontFamily:"'Nunito',sans-serif", fontWeight:800, color:"#1B2D4F", fontSize:15 }}>{t.name}</div>
-              <div style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:12, fontWeight:600 }}>{t.role}</div>
+              <div style={{ fontFamily:"'Nunito',sans-serif", fontWeight:800, color:"#1B2D4F", fontSize:15 }}>{testimonial.name}</div>
+              <div style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:12, fontWeight:600 }}>{testimonial.role}</div>
             </div>
           </div>
         </div>
@@ -978,6 +985,7 @@ function Testimonials(){
 
 // ── Contact ───────────────────────────────────────────────────────────────────
 function Contact(){
+  const [lang] = useLang();
   const [form,setForm]=useState({name:"",email:"",service:"",message:""});
   const [sent,setSent]=useState(false);
   const [focused,setFocused]=useState({});
@@ -996,11 +1004,11 @@ function Contact(){
     <section id="contact" style={{ background:"#fff", padding:"100px 5vw" }}>
       <div ref={ref} style={{ maxWidth:940, margin:"0 auto", opacity:visible?1:0, transform:visible?"none":"translateY(22px)", transition:"all .8s ease" }}>
         <div style={{ textAlign:"center", marginBottom:52 }}>
-          <SectionLabel text="GET IN TOUCH"/>
+          <SectionLabel text={t(lang,"contact","label")}/>
           <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.8rem)", fontWeight:900, color:"#1B2D4F" }}>
-            Start Your <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>Project</span>
+            {t(lang,"contact","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"contact","h2b")}</span>
           </h2>
-          <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:15, fontWeight:600, marginTop:10 }}>Ready to build something extraordinary? Your message goes directly to our WhatsApp.</p>
+          <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:15, fontWeight:600, marginTop:10 }}>{t(lang,"contact","sub")}</p>
         </div>
         <div className="cg" style={{ display:"grid", gridTemplateColumns:"1fr 1.7fr", gap:44, alignItems:"start" }}>
           <div>
@@ -1043,7 +1051,7 @@ function Contact(){
                 <div style={{ marginBottom:22 }}><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>MESSAGE</label><textarea value={form.message} onChange={e=>setForm({...form,message:e.target.value})} onFocus={()=>setFocused({...focused,message:true})} onBlur={()=>setFocused({...focused,message:false})} rows={4} placeholder="Tell us about your project..." style={{...inp("message"),marginTop:6,resize:"vertical"}}/></div>
                 <button onClick={submit} style={{ width:"100%", background:"linear-gradient(135deg,#3B82C4,#0EA5C9)", border:"none", borderRadius:10, color:"#fff", fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:15, padding:"15px", cursor:"pointer", boxShadow:"0 6px 20px rgba(59,130,196,0.28)", transition:"transform .2s", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}
                   onMouseEnter={e=>e.currentTarget.style.transform="translateY(-1px)"} onMouseLeave={e=>e.currentTarget.style.transform="none"}>
-                  <span>Send via WhatsApp</span><span>💬</span>
+                  <span>{t(lang,"contact","send")}</span><span>💬</span>
                 </button>
                 <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:12, fontWeight:600, textAlign:"center", marginTop:10 }}>Opens WhatsApp with your message pre-filled</p>
               </div>
@@ -1057,6 +1065,7 @@ function Contact(){
 
 // ── Footer ────────────────────────────────────────────────────────────────────
 function Footer(){
+  const [lang] = useLang();
   return (
     <footer style={{ background:"#1B2D4F", padding:"60px 5vw 28px" }}>
       <div style={{ maxWidth:1200, margin:"0 auto" }}>
@@ -1071,7 +1080,7 @@ function Footer(){
                 display:"block",
               }}/>
             </div>
-            <p style={{ fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,0.45)", fontSize:13.5, lineHeight:1.78, maxWidth:270, fontWeight:600 }}>AI-first engineering company building intelligent, scalable, and beautiful software for the next generation of businesses.</p>
+            <p style={{ fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,0.45)", fontSize:13.5, lineHeight:1.78, maxWidth:270, fontWeight:600 }}>{t(lang,"footer","tagline")}</p>
             {/* Social links */}
             <div style={{display:"flex",gap:10,marginTop:20}}>
               <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" title="LinkedIn" style={{width:38,height:38,borderRadius:"50%",background:"rgba(255,255,255,0.1)",border:"1px solid rgba(255,255,255,0.15)",display:"flex",alignItems:"center",justifyContent:"center",textDecoration:"none",transition:"all .2s"}} onMouseEnter={e=>{e.currentTarget.style.background="#0077B5";e.currentTarget.style.borderColor="#0077B5";}} onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.1)";e.currentTarget.style.borderColor="rgba(255,255,255,0.15)";}}>
