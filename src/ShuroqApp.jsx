@@ -950,7 +950,7 @@ function Testimonials(){
       <div style={{ maxWidth:760, margin:"0 auto", textAlign:"center" }}>
         <SectionLabel text={t(lang,"testimonials","label")}/>
         <h2 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(1.8rem,3.5vw,2.6rem)", fontWeight:900, color:"#1B2D4F", marginBottom:44 }}>
-          {t(lang,"testimonials","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"testimonials","h2b")}</span>
+          {t(lang,"testimonials","h2a")} <span style={{ background:"linear-gradient(135deg,#F5A623,#3B82C4)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent" }}>{t(lang,"testimonials","h2b")}</span> {t(lang,"testimonials","h2c")}
         </h2>
         <div style={{ background:"#fff", border:"1.5px solid #D6E4F7", borderRadius:20, padding:"36px 44px", boxShadow:"0 4px 24px rgba(59,130,196,0.09)", minHeight:210 }}>
           <div style={{ fontSize:44, color:"#3B82C4", lineHeight:1, marginBottom:14, fontFamily:"Georgia,serif", opacity:.3 }}>"</div>
@@ -1000,7 +1000,7 @@ function Contact(){
         </div>
         <div className="cg" style={{ display:"grid", gridTemplateColumns:"1fr 1.7fr", gap:44, alignItems:"start" }}>
           <div>
-            {[{icon:"📧",label:"Email",val:"contact@shuroq.com"},{icon:"📱",label:"WhatsApp",val:"+91 8983140094"},{icon:"🕐",label:"Response Time",val:"Within 24 hours"}].map(item=>(
+            {[{icon:"📧",label:t(lang,"contact","email"),val:"contact@shuroq.com"},{icon:"📱",label:t(lang,"contact","whatsapp"),val:"+91 8983140094"},{icon:"🕐",label:t(lang,"contact","response"),val:t(lang,"contact","within")}].map(item=>(
               <div key={item.label} style={{ display:"flex", gap:14, alignItems:"flex-start", marginBottom:22 }}>
                 <div style={{ width:42, height:42, background:"#E8F0FB", border:"1px solid #D6E4F7", borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:18, flexShrink:0 }}>{item.icon}</div>
                 <div>
@@ -1010,7 +1010,7 @@ function Contact(){
               </div>
             ))}
             <div style={{ background:"linear-gradient(135deg,#EAF2FD,#F4F7FC)", border:"1.5px solid #D6E4F7", borderRadius:16, padding:"22px 20px" }}>
-              <div style={{ fontFamily:"'Playfair Display',serif", fontWeight:800, color:"#1B2D4F", fontSize:17, marginBottom:4 }}>Live Dashboard</div>
+              <div style={{ fontFamily:"'Playfair Display',serif", fontWeight:800, color:"#1B2D4F", fontSize:17, marginBottom:4 }}>{t(lang,"contact","dashboard")}</div>
               <div style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:13, fontWeight:600, marginBottom:16 }}>AI · Analytics · Automation</div>
               <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
                 {[["98%","Accuracy"],["24/7","Support"]].map(([v,l])=>(
@@ -1026,22 +1026,22 @@ function Contact(){
             {sent ? (
               <div style={{ textAlign:"center", padding:"28px 0" }}>
                 <div style={{ fontSize:52, marginBottom:14 }}>✅</div>
-                <h3 style={{ fontFamily:"'Playfair Display',serif", fontSize:22, color:"#3B82C4", marginBottom:8 }}>Opening WhatsApp!</h3>
-                <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:14, fontWeight:600 }}>Your message is ready on WhatsApp. We'll reply within 24 hours.</p>
+                <h3 style={{ fontFamily:"'Playfair Display',serif", fontSize:22, color:"#3B82C4", marginBottom:8 }}>{t(lang,"contact","successH")}</h3>
+                <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:14, fontWeight:600 }}>{t(lang,"contact","successP")}</p>
               </div>
             ) : (
               <div>
                 <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14, marginBottom:14 }}>
-                  <div><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>NAME</label><input value={form.name} onChange={e=>setForm({...form,name:e.target.value})} onFocus={()=>setFocused({...focused,name:true})} onBlur={()=>setFocused({...focused,name:false})} placeholder="John Doe" style={{...inp("name"),marginTop:6}}/></div>
-                  <div><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>EMAIL</label><input type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} onFocus={()=>setFocused({...focused,email:true})} onBlur={()=>setFocused({...focused,email:false})} placeholder="you@company.com" style={{...inp("email"),marginTop:6}}/></div>
+                  <div><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>{t(lang,"contact","name")}</label><input value={form.name} onChange={e=>setForm({...form,name:e.target.value})} onFocus={()=>setFocused({...focused,name:true})} onBlur={()=>setFocused({...focused,name:false})} placeholder="John Doe" style={{...inp("name"),marginTop:6}}/></div>
+                  <div><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>{t(lang,"contact","emailL")}</label><input type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} onFocus={()=>setFocused({...focused,email:true})} onBlur={()=>setFocused({...focused,email:false})} placeholder="you@company.com" style={{...inp("email"),marginTop:6}}/></div>
                 </div>
-                <div style={{ marginBottom:14 }}><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>SERVICE</label><select value={form.service} onChange={e=>setForm({...form,service:e.target.value})} onFocus={()=>setFocused({...focused,service:true})} onBlur={()=>setFocused({...focused,service:false})} style={{...inp("service"),marginTop:6}}><option value="">Select a service...</option>{SERVICES.map(s=><option key={s.title} value={s.title}>{s.title}</option>)}</select></div>
-                <div style={{ marginBottom:22 }}><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>MESSAGE</label><textarea value={form.message} onChange={e=>setForm({...form,message:e.target.value})} onFocus={()=>setFocused({...focused,message:true})} onBlur={()=>setFocused({...focused,message:false})} rows={4} placeholder="Tell us about your project..." style={{...inp("message"),marginTop:6,resize:"vertical"}}/></div>
+                <div style={{ marginBottom:14 }}><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>{t(lang,"contact","service")}</label><select value={form.service} onChange={e=>setForm({...form,service:e.target.value})} onFocus={()=>setFocused({...focused,service:true})} onBlur={()=>setFocused({...focused,service:false})} style={{...inp("service"),marginTop:6}}><option value="">{t(lang,"contact","servicePH")}</option>{SERVICES.map(s=><option key={s.title} value={s.title}>{s.title}</option>)}</select></div>
+                <div style={{ marginBottom:22 }}><label style={{ fontFamily:"'Nunito',sans-serif", fontSize:11, color:"#6B84A3", letterSpacing:1.2, fontWeight:800 }}>{t(lang,"contact","message")}</label><textarea value={form.message} onChange={e=>setForm({...form,message:e.target.value})} onFocus={()=>setFocused({...focused,message:true})} onBlur={()=>setFocused({...focused,message:false})} rows={4} placeholder={t(lang,"contact","msgPH")} style={{...inp("message"),marginTop:6,resize:"vertical"}}/></div>
                 <button onClick={submit} style={{ width:"100%", background:"linear-gradient(135deg,#3B82C4,#0EA5C9)", border:"none", borderRadius:10, color:"#fff", fontFamily:"'Nunito',sans-serif", fontWeight:900, fontSize:15, padding:"15px", cursor:"pointer", boxShadow:"0 6px 20px rgba(59,130,196,0.28)", transition:"transform .2s", display:"flex", alignItems:"center", justifyContent:"center", gap:8 }}
                   onMouseEnter={e=>e.currentTarget.style.transform="translateY(-1px)"} onMouseLeave={e=>e.currentTarget.style.transform="none"}>
                   <span>{t(lang,"contact","send")}</span><span>💬</span>
                 </button>
-                <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:12, fontWeight:600, textAlign:"center", marginTop:10 }}>Opens WhatsApp with your message pre-filled</p>
+                <p style={{ fontFamily:"'Nunito',sans-serif", color:"#6B84A3", fontSize:12, fontWeight:600, textAlign:"center", marginTop:10 }}>{t(lang,"contact","hint")}</p>
               </div>
             )}
           </div>
@@ -1088,7 +1088,7 @@ function Footer(){
               </a>
             </div>
           </div>
-          {[{label:"Company",links:[["About","#about"],["Services","#services"],["Portfolio","#portfolio"],["Contact","#contact"]]},{label:"Services",links:[["AI Development","#services"],["Mobile Apps","#services"],["Web Development","#services"],["DevOps","#services"]]},{label:"Connect With Us",links:[["LinkedIn",LINKEDIN_URL,true],["Instagram",INSTAGRAM_URL,true],["WhatsApp",`https://wa.me/${WA_NUM}`,true],["Email","mailto:contact@shuroq.com",true],["Call Support","tel:+918983140094",true]]}].map(col=>(
+          {[{label:t(lang,"footer","company"),links:[[t(lang,"nav","about"),"#about"],[t(lang,"nav","services"),"#services"],[t(lang,"nav","portfolio"),"#portfolio"],[t(lang,"nav","contact"),"#contact"]]},{label:t(lang,"footer","services"),links:[["AI Development","#services"],["Mobile Apps","#services"],["Web Development","#services"],["DevOps","#services"]]},{label:t(lang,"footer","connect"),links:[["LinkedIn",LINKEDIN_URL,true],["Instagram",INSTAGRAM_URL,true],["WhatsApp",`https://wa.me/${WA_NUM}`,true],["Email","mailto:contact@shuroq.com",true],["Call Support","tel:+918983140094",true]]}].map(col=>(
             <div key={col.label}>
               <div style={{ fontFamily:"'Nunito',sans-serif", fontWeight:900, color:"#fff", fontSize:12.5, letterSpacing:2, marginBottom:18 }}>{col.label.toUpperCase()}</div>
               {col.links.map(([label,href,external])=>(
@@ -1104,8 +1104,8 @@ function Footer(){
           ))}
         </div>
         <div style={{ borderTop:"1px solid rgba(255,255,255,0.08)", paddingTop:22, display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:10 }}>
-          <span style={{ fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,0.28)", fontSize:13, fontWeight:600 }}>© 2025 Shuroq. All rights reserved.</span>
-          <span style={{ fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,0.28)", fontSize:13, fontWeight:600 }}>Tech Redefined ✦</span>
+          <span style={{ fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,0.28)", fontSize:13, fontWeight:600 }}>{t(lang,"footer","copyright")}</span>
+          <span style={{ fontFamily:"'Nunito',sans-serif", color:"rgba(255,255,255,0.28)", fontSize:13, fontWeight:600 }}>{t(lang,"footer","tag")}</span>
         </div>
       </div>
     </footer>
@@ -1145,6 +1145,7 @@ function FloatingActions(){
 
 // ── Smart Support Assistant ───────────────────────────────────────────────────
 function SupportAssistant(){
+  const [lang] = useLang();
   const [open,setOpen]=useState(false);
   const [minimized,setMinimized]=useState(false);
   const [step,setStep]=useState("options");
@@ -1213,20 +1214,20 @@ function SupportAssistant(){
                 </div>
                 <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
                   <div>
-                    <label style={{ fontFamily:"'Nunito',sans-serif",fontSize:10,color:"#6B84A3",letterSpacing:1.2,fontWeight:800 }}>YOUR NAME</label>
+                    <label style={{ fontFamily:"'Nunito',sans-serif",fontSize:10,color:"#6B84A3",letterSpacing:1.2,fontWeight:800 }}>{t(lang,"contact","name")}</label>
                     <input value={form.name} onChange={e=>setForm({...form,name:e.target.value})} onFocus={()=>setFocused({...focused,name:true})} onBlur={()=>setFocused({...focused,name:false})} placeholder="John Doe" style={{...inp("name"),marginTop:5}}/>
                   </div>
                   <div>
-                    <label style={{ fontFamily:"'Nunito',sans-serif",fontSize:10,color:"#6B84A3",letterSpacing:1.2,fontWeight:800 }}>EMAIL</label>
+                    <label style={{ fontFamily:"'Nunito',sans-serif",fontSize:10,color:"#6B84A3",letterSpacing:1.2,fontWeight:800 }}>{t(lang,"contact","emailL")}</label>
                     <input type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} onFocus={()=>setFocused({...focused,email:true})} onBlur={()=>setFocused({...focused,email:false})} placeholder="you@company.com" style={{...inp("email"),marginTop:5}}/>
                   </div>
                   <div>
-                    <label style={{ fontFamily:"'Nunito',sans-serif",fontSize:10,color:"#6B84A3",letterSpacing:1.2,fontWeight:800 }}>REQUIREMENT</label>
+                    <label style={{ fontFamily:"'Nunito',sans-serif",fontSize:10,color:"#6B84A3",letterSpacing:1.2,fontWeight:800 }}>{t(lang,"contact","message")}</label>
                     <textarea value={form.requirement} onChange={e=>setForm({...form,requirement:e.target.value})} onFocus={()=>setFocused({...focused,requirement:true})} onBlur={()=>setFocused({...focused,requirement:false})} rows={3} placeholder="Briefly describe your need..." style={{...inp("requirement"),marginTop:5,resize:"none"}}/>
                   </div>
                 </div>
                 <button onClick={sendEnquiry} style={{ width:"100%",marginTop:12,background:"linear-gradient(135deg,#3B82C4,#0EA5C9)",border:"none",borderRadius:10,color:"#fff",fontFamily:"'Nunito',sans-serif",fontWeight:900,fontSize:14,padding:"12px",cursor:"pointer",boxShadow:"0 4px 14px rgba(59,130,196,0.28)",display:"flex",alignItems:"center",justifyContent:"center",gap:6 }}>
-                  Send via WhatsApp 💬
+                  {t(lang,"contact","send")} 💬
                 </button>
                 <p style={{ fontFamily:"'Nunito',sans-serif",color:"#6B84A3",fontSize:11,fontWeight:600,textAlign:"center",marginTop:8 }}>Routes to: {selected.route}</p>
               </>
@@ -1235,7 +1236,7 @@ function SupportAssistant(){
             {step === "done" && (
               <div style={{ textAlign:"center",padding:"20px 0" }}>
                 <div style={{ fontSize:44,marginBottom:12 }}>✅</div>
-                <h4 style={{ fontFamily:"'Playfair Display',serif",fontSize:18,color:"#3B82C4",marginBottom:8 }}>Message Sent!</h4>
+                <h4 style={{ fontFamily:"'Playfair Display',serif",fontSize:18,color:"#3B82C4",marginBottom:8 }}>{t(lang,"contact","successH")}</h4>
                 <p style={{ fontFamily:"'Nunito',sans-serif",color:"#6B84A3",fontSize:13,fontWeight:600,marginBottom:14 }}>WhatsApp opened. We'll respond within 24 hours.</p>
                 <button onClick={reset} style={{ background:"#E8F0FB",border:"none",borderRadius:8,padding:"9px 18px",fontFamily:"'Nunito',sans-serif",fontWeight:800,fontSize:13,color:"#3B82C4",cursor:"pointer" }}>← New Enquiry</button>
               </div>
