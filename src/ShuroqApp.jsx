@@ -477,15 +477,20 @@ function t(lang, section, key) {
   return T[lang]?.[section]?.[key] ?? T.en[section]?.[key] ?? key;
 }
 
-// Global language context (simple state lifted via module-level var + custom hook)
-let _setGlobalLang = null;
+// Global language context — all mounted components share one Set of setters
+const _langSetters = new Set();
 let _globalLang = "en";
 function useLang() {
   const [lang, setLang] = useState(_globalLang);
   useEffect(() => {
-    _setGlobalLang = (l) => { _globalLang = l; setLang(l); };
+    _langSetters.add(setLang);
+    return () => _langSetters.delete(setLang);
   }, []);
-  return [lang, (l) => { if(_setGlobalLang) _setGlobalLang(l); else { _globalLang = l; } }];
+  const changeLang = useCallback((l) => {
+    _globalLang = l;
+    _langSetters.forEach(s => s(l));
+  }, []);
+  return [lang, changeLang];
 }
 
 // ── Language Switcher Component ───────────────────────────────────────────────
